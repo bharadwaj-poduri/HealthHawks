@@ -1,0 +1,75 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Recipe Recommendation
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='index.css')}}">
+{% endblock %}
+
+{{ bootstrap.load_js() }}
+
+{% block navbar %}
+    {{nav.top.render(renderer='simple')}}
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+
+      <form class="form-recipe" method="POST" action="/">
+        <h3 class="form-recipe-heading">Please fill in the Insurance form details</h3> </br>
+        {{ form.hidden_tag() }}
+        <div class="grid-form">
+          {{ wtf.form_field(form.Area_Service) }}
+          {{ wtf.form_field(form.Hospital_County) }}
+          {{ wtf.form_field(form.Age) }}
+          {{ wtf.form_field(form.Gender) }}
+          {{ wtf.form_field(form.Cultural_group) }}
+          {{ wtf.form_field(form.ethnicity) }}
+          {{ wtf.form_field(form.Days_spend_hsptl) }}
+          {{ wtf.form_field(form.Admission_type) }}
+          {{ wtf.form_field(form.Home_or_self_care) }}
+          {{ wtf.form_field(form.Surg_Description) }}
+          {{ wtf.form_field(form.Abortion) }}
+          {{ wtf.form_field(form.Emergency_dept_yes_No) }}
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+      </form>
+
+    </div> <!-- /container -->
+
+  </br>
+
+    {% if result == 0 %}
+    <div id="myModalSuccess" class="modal-success"></div>
+      <div class="modal-content-success">
+        <div class="modal-header-success">
+          <span class="closeSuccess" onclick="hideAlert()">&times;</span>
+          <h2>Success!</h2>
+        </div>
+        <div class="modal-body-success">
+          <strong>This seems to be a valid insurance claim.</strong>
+        </div>
+      </div>
+    </div>
+    {% elif result and result == 1 %}
+    <div id="myModalFailure" class="modal-failure"></div>
+      <div class="modal-content-failure">
+        <div class="modal-header-failure">
+          <span class="closeFailure" onclick="hideAlert()">&times;</span>
+          <h2>Alert!</h2>
+        </div>
+        <div class="modal-body-failure">
+          <strong>This seems to be a fraud insurance claim.</strong> 
+        </div>
+      </div>
+    </div>
+
+    {% endif %}
+
+{% endblock %}
+

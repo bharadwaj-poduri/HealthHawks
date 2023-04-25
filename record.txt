@@ -1,0 +1,5 @@
+['Southern Tier','Broome','30 to 49','F','Other Race','Not Span/Hispanic','Elective','Home or Self Care','Extracranial vascular procedures','Surgical',0,'N','N'
+
+
+
+'Capital/Adirond','Albany','30 to 49','M','Black/African American','Not Span/Hispanic','Elective','Home or Self Care','Alcohol abuse & dependence','Medical',0,'N','N'
